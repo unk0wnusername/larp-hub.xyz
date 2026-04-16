@@ -13,27 +13,23 @@ const y=(e.clientY/window.innerHeight-.5)*-12;
 card.style.transform=`rotateX(${y}deg) rotateY(${x}deg)`;
 });
 
+function refresh(){
+location.reload();
+}
+
 document.addEventListener("keydown",(e)=>{
+const key=e.key.toLowerCase();
+
 if(
 e.code==="F12"||
-(e.ctrlKey&&e.shiftKey&&(e.code==="KeyI"||e.code==="KeyJ"||e.code==="KeyC"))||
-(e.ctrlKey&&(e.code==="KeyU"))
+(e.ctrlKey&&e.shiftKey&&(key==="i"||key==="j"||key==="c"))||
+(e.ctrlKey&&key==="u")
 ){
-e.preventDefault();
-return false;
+refresh();
 }
 });
 
 document.addEventListener("contextmenu",(e)=>{
+refresh();
 e.preventDefault();
 });
-
-setInterval(()=>{
-const before=new Date().getTime();
-debugger;
-const after=new Date().getTime();
-if(after-before>100){
-document.body.innerHTML="";
-location.reload();
-}
-},1000);
