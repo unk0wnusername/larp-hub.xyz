@@ -4,12 +4,10 @@ const audio = document.getElementById("bgm");
 const canvas = document.getElementById("snowCanvas");
 const ctx = canvas.getContext("2d");
 
-// --- Anti-DevTools Logic ---
 (function() {
     const threshold = 160;
-    
+
     const detectAction = () => {
-        // Triggered if tools are detected via resize
         while(true) { debugger; }
     };
 
@@ -19,24 +17,26 @@ const ctx = canvas.getContext("2d");
         if (widthThreshold || heightThreshold) detectAction();
     };
 
-    // Disable Right Click & Hotkeys
     document.addEventListener('contextmenu', e => e.preventDefault());
+
     document.addEventListener('keydown', e => {
-        if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
+        if (
+            e.keyCode === 123 ||
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
+            (e.ctrlKey && e.keyCode === 85)
+        ) {
             e.preventDefault();
         }
     });
 
-    // Debugger timing check
     setInterval(() => {
         const start = performance.now();
-        debugger; 
+        debugger;
         if (performance.now() - start > 100) window.location.reload();
         checkResize();
     }, 1000);
 })();
 
-// --- Original Functionality ---
 enter.onclick = () => {
     enter.classList.add("hidden");
     audio.play().catch(() => {});
@@ -70,22 +70,27 @@ function draw() {
     ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = "rgba(255,255,255,.6)";
     ctx.beginPath();
+
     snow.forEach(f => {
         ctx.moveTo(f.x, f.y);
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+
         f.y += f.v;
         f.x += Math.sin(f.y / 20) * .4;
+
         if (f.y > h) {
             f.y = -10;
             f.x = Math.random() * w;
         }
     });
+
     ctx.fill();
     requestAnimationFrame(draw);
 }
 
 init();
 draw();
+
 addEventListener("resize", () => {
     init();
 });
