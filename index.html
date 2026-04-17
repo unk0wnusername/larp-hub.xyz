@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>larp-hub</title>
 
+<meta property="og:title" content="To larp or not to larp, that is the question">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://larp-hub.xyz/">
+<meta property="og:image" content="https://files.catbox.moe/85lxco.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="To larp or not to larp, that is the question">
+<meta name="twitter:image" content="https://files.catbox.moe/85lxco.png">
+
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #000;
-  overflow: hidden;
-}
-
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;overflow:hidden;font-family:Arial}
+video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover}
+#o{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;cursor:pointer;z-index:10;flex-direction:column;text-align:center}
+#o span{opacity:.6;font-size:14px;margin-top:10px}
 </style>
 </head>
 
 <body>
 
-<video id="splash" autoplay muted playsinline>
-  <source src="splash.mp4" type="video/mp4">
+<video id="v" playsinline>
+<source src="splash.mp4" type="video/mp4">
 </video>
 
+<div id="o">CLICK TO ENTER<br><span>to larp or not to larp, that is the question</span></div>
+
 <script>
-const video = document.getElementById("splash");
+const v=document.getElementById("v"),o=document.getElementById("o");let s=0;
 
-video.addEventListener("ended", () => {
-  window.location.href = "/k1tt7/";
-});
+o.onclick=async()=>{
+if(s)return;s=1;o.style.display="none";
+try{await v.play()}catch(e){}
+};
 
-// fallback in case video fails
-setTimeout(() => {
-  window.location.href = "/k1tt7/";
-}, 15000);
+v.onended=()=>location.href="/k1tt7/";
+
+setTimeout(()=>location.href="/k1tt7/",15000);
 </script>
 
 </body>
