@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access Denied</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #0a0a0a, #000000);
+    font-family: Inter, sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+/* subtle scanlines */
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+}
+
+/* glitch animation */
+@keyframes glitch {
+    0% { text-shadow: 2px 0 red, -2px 0 blue; }
+    20% { text-shadow: -2px 0 red, 2px 0 blue; }
+    40% { text-shadow: 2px 2px red, -2px -2px blue; }
+    60% { text-shadow: -1px 1px red, 1px -1px blue; }
+    80% { text-shadow: 2px -1px red, -2px 1px blue; }
+    100% { text-shadow: 0 0 transparent; }
+}
+
+.container {
+    text-align: center;
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    background: rgba(10,10,10,0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+
+.lock {
+    font-size: 60px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 0;
+    letter-spacing: 2px;
+    animation: glitch 2s infinite;
+}
+
+p {
+    margin-top: 10px;
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+}
+
+.button {
+    margin-top: 25px;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.button:hover {
+    background: white;
+    color: black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="lock"></div>
+    <h1>ACESS DENIED</h1>
+    <p>you have not larped hard enough yet</p>
+</div>
+
+</body>
+</html>
